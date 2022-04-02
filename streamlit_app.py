@@ -20,7 +20,6 @@ if run_model:
     else:
         flag = True
 
-
 if flag:
     st.write(":tada:")
     col = st.columns(4)
@@ -30,4 +29,3 @@ if flag:
         image = Image.open(image_path + l[i])
         image = image.resize((250, 300), Image.ANTIALIAS)
         col[i % 4].image(image)
-
