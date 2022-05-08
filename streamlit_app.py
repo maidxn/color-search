@@ -49,8 +49,8 @@ if flag:
     paths = []
     for i in range(top):
         res_path = top_paths[i]
-        res_path = res_path.replace('/gdrive/MyDrive/', '\\')
-        res_path = res_path.replace('/', '\\')
+        res_path = res_path.replace('/gdrive/MyDrive/', '/')
+        # res_path = res_path.replace('/', '\\')
         image_path = os.getcwd() + res_path
         paths.append(image_path)
     for i in range(top):
