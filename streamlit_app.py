@@ -14,8 +14,7 @@ picture = st.sidebar.camera_input("")
 
 top = st.sidebar.selectbox(
      'Lựa chọn số lượng hình ảnh trả về:',
-     (10, 20, 50, 100, 200, 1000000000))
-st.sidebar.write("1000000000 ~ Tất cả hình ảnh")
+     (10, 20, 50, 100, 200, "All"))
 
 run_model = st.sidebar.button("Tìm kiếm")
 flag = False
@@ -29,7 +28,7 @@ if run_model:
 with open("imagespath.pkl", "rb") as file:
     image_paths = pickle.load(file)
 data_feature = np.load('colorthief_5.npy')
-top = top if top != 1000000000 else len(data_feature)
+top = top if top != "All" else len(data_feature)
 
 if flag:
     img_path = uploaded_image if uploaded_image is not None else picture
@@ -44,13 +43,13 @@ if flag:
         top_paths = [image_paths[i] for i in top_indices]
     st.success("Tìm kiếm hoàn tất! :tada:")
     end_time = time.time()
-    st.write(":stopwatch: Top 20 kết quả trả về trong ", round(end_time - start_time, 4), "s")
+    st.write(":stopwatch: Top {} kết quả trả về trong {} s".format(top, round(end_time - start_time, 4)))
     col = st.columns(4)
     paths = []
     for i in range(top):
         res_path = top_paths[i]
+        res_path = res_path.replace('Copy of ', '')
         res_path = res_path.replace('/gdrive/MyDrive/', '/')
-        # res_path = res_path.replace('/', '\\')
         image_path = os.getcwd() + res_path
         paths.append(image_path)
     for i in range(top):
