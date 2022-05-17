@@ -27,7 +27,7 @@ if run_model:
 
 with open("imagespath.pkl", "rb") as file:
     image_paths = pickle.load(file)
-data_feature = np.load('colorthief_5.npy')
+data_feature = np.load('demo/kmeans_5.npy')
 top = top if top != "All" else len(data_feature)
 
 if flag:
