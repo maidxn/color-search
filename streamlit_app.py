@@ -25,9 +25,9 @@ if run_model:
     else:
         flag = True
 
-with open("imagespath.pkl", "rb") as file:
+with open("imagespath_holiday.pkl", "rb") as file:
     image_paths = pickle.load(file)
-data_feature = np.load('demo/kmeans_5.npy')
+data_feature = np.load('demo/histogram_holiday_bin_8.npy')
 top = top if top != "All" else len(data_feature)
 
 if flag:
@@ -38,7 +38,7 @@ if flag:
     start_time = time.time()
     with st.spinner("Xin vui lòng chờ một chút..."):
         query_arr = np.array(query_img)
-        cosine_arr = CalculateCosine(query_arr, data_feature)
+        cosine_arr = CalculateCosine_Holiday(query_arr, data_feature)
         top_indices = cosine_arr.argsort()[:-(top+1):-1]
         top_paths = [image_paths[i] for i in top_indices]
     st.success("Tìm kiếm hoàn tất! :tada:")
