@@ -6,8 +6,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pickle
 
 
-def CalHistogram(image_path, bin=[8, 8, 8]):
-    if os.path.exists(image_path):
+def CalHistogram(image_path, bin=[8, 8, 8], option=0):
+    if option == 0:
         img = cv.imread(image_path)
     else:
         img = image_path
@@ -17,8 +17,8 @@ def CalHistogram(image_path, bin=[8, 8, 8]):
     return hist
 
 
-def CalculateCosine_Holiday(query_path, data_feature, bin=[8, 8, 8]):
-    query_feature = CalHistogram(query_path, bin)
+def CalculateCosine_Holiday(query_path, data_feature, bin=[8, 8, 8], option=0):
+    query_feature = CalHistogram(query_path, bin, option)
     cosine_array = [cosine_similarity(query_feature, i.reshape(1, -1)) for i in data_feature]
     res = [cosine_array[i][0][0] for i in range(len(data_feature))]
     res = np.array(res)

@@ -47,7 +47,7 @@ if flag:
     with st.spinner("Xin vui lòng chờ một chút..."):
         if camera:
             query_arr = np.array(query_img)
-            cosine_arr = CalculateCosine_Holiday(query_arr, data_feature)
+            cosine_arr = CalculateCosine_Holiday(query_arr, data_feature, [8,8,8], 1)
         else:
             img_path = os.getcwd() + '/dataset/images/' + img_name
             if not os.path.exists(img_path):
@@ -56,7 +56,7 @@ if flag:
                 cosine_arr = CalculateCosine_Holiday(img_path, data_feature)
             else:
                 query_arr = np.array(query_img)
-                cosine_arr = CalculateCosine_Holiday(query_arr, data_feature)
+                cosine_arr = CalculateCosine_Holiday(query_arr, data_feature, [8,8,8], 1)
         top_indices = cosine_arr.argsort()[:-(top+1):-1]
         top_paths = [image_paths[i] for i in top_indices]
     st.success("Tìm kiếm hoàn tất! :tada:")
