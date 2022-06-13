@@ -7,7 +7,7 @@ import pickle
 
 
 def CalHistogram(image_path, bin=[8, 8, 8]):
-    img = image_path
+    img = cv.imread(image_path)
     img = img[:,:,:3]
     hist = cv.calcHist([img], [0, 1, 2], None, [bin[0], bin[1], bin[2]], [0,256, 0, 256, 0, 256])
     hist = hist.reshape(1, -1)/hist.sum()

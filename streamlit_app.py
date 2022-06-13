@@ -1,3 +1,5 @@
+import os
+
 import streamlit as st
 from PIL import Image
 import time
@@ -32,13 +34,14 @@ top = top if top != "All" else len(data_feature)
 
 if flag:
     img_path = uploaded_image if uploaded_image is not None else picture
+    img_name = uploaded_image.name
     query_img = Image.open(img_path)
     query_img = query_img.resize((250, 300), Image.ANTIALIAS)
     st.image(query_img, "Ảnh tải lên")
     start_time = time.time()
     with st.spinner("Xin vui lòng chờ một chút..."):
-        query_arr = np.array(query_img)
-        cosine_arr = CalculateCosine_Holiday(query_arr, data_feature)
+        img_path = os.getcwd() + '/dataset/images/' + img_name
+        cosine_arr = CalculateCosine_Holiday(img_path, data_feature)
         top_indices = cosine_arr.argsort()[:-(top+1):-1]
         top_paths = [image_paths[i] for i in top_indices]
     st.success("Tìm kiếm hoàn tất! :tada:")
@@ -48,7 +51,6 @@ if flag:
     paths = []
     for i in range(top):
         res_path = top_paths[i]
-        res_path = res_path.replace('Copy of ', '')
         res_path = res_path.replace('/gdrive/MyDrive/', '/')
         image_path = os.getcwd() + res_path
         paths.append(image_path)
