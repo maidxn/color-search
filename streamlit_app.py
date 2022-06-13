@@ -39,9 +39,16 @@ if flag:
     query_img = query_img.resize((250, 300), Image.ANTIALIAS)
     st.image(query_img, "Ảnh tải lên")
     start_time = time.time()
+    in_dataset = True
     with st.spinner("Xin vui lòng chờ một chút..."):
         img_path = os.getcwd() + '/dataset/images/' + img_name
-        cosine_arr = CalculateCosine_Holiday(img_path, data_feature)
+        if not os.path.exists(img_path):
+            in_dataset = False
+        if in_dataset:
+            cosine_arr = CalculateCosine_Holiday(img_path, data_feature)
+        else:
+            query_arr = np.array(query_img)
+            cosine_arr = CalculateCosine_Holiday(query_arr, data_feature)
         top_indices = cosine_arr.argsort()[:-(top+1):-1]
         top_paths = [image_paths[i] for i in top_indices]
     st.success("Tìm kiếm hoàn tất! :tada:")
