@@ -41,7 +41,6 @@ if flag:
     start_time = time.time()
     with st.spinner("Xin vui lòng chờ một chút..."):
         img_path = os.getcwd() + '/dataset/images/' + img_name
-        st.write(img_path)
         cosine_arr = CalculateCosine_Holiday(img_path, data_feature)
         top_indices = cosine_arr.argsort()[:-(top+1):-1]
         top_paths = [image_paths[i] for i in top_indices]
