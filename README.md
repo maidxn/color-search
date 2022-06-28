@@ -14,3 +14,12 @@
 
 ## Application
 [Link to app](https://share.streamlit.io/dxmai/cs231.m22.khcl/main)
+
+### Các file liên quan
+* Báo cáo 
+  * [DOC](https://github.com/dxmai/CS231.M22.KHCL/blob/main/19521820.docx)
+  * [PDF](https://github.com/dxmai/CS231.M22.KHCL/blob/main/19521820.pdf)
+* Slide thuyết trình
+  * [PPTX](https://github.com/dxmai/CS231.M22.KHCL/blob/main/19521820.pptx)
+* Google collab
+  * [IPYNB]()
