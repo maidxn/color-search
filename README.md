@@ -22,4 +22,4 @@
 * Slide thuyết trình
   * [PPTX](https://github.com/dxmai/CS231.M22.KHCL/blob/main/19521820.pptx)
 * Google collab
-  * [IPYNB]()
+  * [IPYNB](https://colab.research.google.com/drive/1RWgl1PTGX149LMAp6PAgyflhJgxCJz-c?usp=sharing)
