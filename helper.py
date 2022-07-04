@@ -6,19 +6,15 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pickle
 
 
-def CalHistogram(image_path, bin=[8, 8, 8], option=0):
-    if option == 0:
-        img = cv.imread(image_path)
-    else:
-        img = image_path
+def CalHistogram(img, bin=[8, 8, 8]):
     img = img[:,:,:3]
     hist = cv.calcHist([img], [0, 1, 2], None, [bin[0], bin[1], bin[2]], [0,256, 0, 256, 0, 256])
     hist = hist.reshape(1, -1)/hist.sum()
     return hist
 
 
-def CalculateCosine_Holiday(query_path, data_feature, bin=[8, 8, 8], option=0):
-    query_feature = CalHistogram(query_path, bin, option)
+def CalculateCosine_Holiday(query_path, data_feature, bin=[8, 8, 8]):
+    query_feature = CalHistogram(query_path, bin)
     cosine_array = [cosine_similarity(query_feature, i.reshape(1, -1)) for i in data_feature]
     res = [cosine_array[i][0][0] for i in range(len(data_feature))]
     res = np.array(res)
