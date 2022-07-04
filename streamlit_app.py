@@ -1,5 +1,6 @@
 import os
 
+import numpy as np
 import streamlit as st
 from PIL import Image
 import time
@@ -47,6 +48,7 @@ if flag:
     with st.spinner("Xin vui lòng chờ một chút..."):
         query_arr = np.array(query_img)
         query_arr = query_arr[:, :, ::-1]
+        query_arr = np.array(query_arr)
         cosine_arr = CalculateCosine_Holiday(query_arr, data_feature, [8, 8, 8])
         top_indices = cosine_arr.argsort()[:-(top+1):-1]
         top_paths = [image_paths[i] for i in top_indices]
