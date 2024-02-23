@@ -1,5 +1,5 @@
 pip==22.0.4
-scikit-learn==0.21.3
+scikit-learn
 matplotlib==3.5.1
 numpy==1.21.4
 opencv-python-headless
